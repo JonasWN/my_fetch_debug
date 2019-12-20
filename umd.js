@@ -115,7 +115,7 @@
 				return await new Promise(function (resolve, reject) {
 					resolve(response.status);
 				});
-			} else if (XMLHttpRequest === "function") {
+			} else if (typeof XMLHttpRequest === "function") {
 				let xhttp = new XMLHttpRequest();
 				xhttp.open("DELETE", this.APIAddress + resource, true);
 				xhttp.send();
