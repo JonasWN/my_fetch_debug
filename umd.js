@@ -1,7 +1,7 @@
-(function(root, factory) {
+(function (root, factory) {
   // AMD
   if (typeof define === "function" && define.amd) {
-    define(["jquery"], factory);
+    define([jquery], factory);
     // CommonJS
   } else if (typeof exports === "object") {
     module.exports = factory(require("jquery"));
@@ -9,7 +9,7 @@
   } else {
     root.myFetch = factory(root.jquery);
   }
-})(this, function($) {
+})(this, function ($) {
   // vores egen del af modulet
   function init(options) {
     this.APIAddress = options.address;
@@ -33,17 +33,17 @@
         let xhttp = new XMLHttpRequest();
         xhttp.open("GET", this.APIAddress + resource, true);
         xhttp.send();
-        return await new Promise(function(resolve, reject) {
-          xhttp.onreadystatechange = function() {
+        return await new Promise(function (resolve, reject) {
+          xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
               resolve(JSON.parse(xhttp.responseText));
             }
           };
         });
       } else {
-        const fetch = require("node-fetch");
 
-        fetch = require("node-fetch");
+
+        const fetch = require("node-fetch");
         let response = await fetch(this.APIAddress + resource, {
           headers: {
             Authorization: this.APIKey
@@ -78,8 +78,8 @@
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.setRequestHeader("Authorization", this.APIKey);
         xhttp.send(JSON.stringify(data));
-        return await new Promise(function(resolve, reject) {
-          xhttp.onreadystatechange = function() {
+        return await new Promise(function (resolve, reject) {
+          xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 201) {
               resolve(JSON.parse(xhttp.responseText));
             }
@@ -115,15 +115,15 @@
           method: "DELETE"
         });
 
-        return await new Promise(function(resolve, reject, handle) {
+        return await new Promise(function (resolve, reject, handle) {
           resolve(response.status);
         });
       } else if (typeof XMLHttpRequest === "function") {
         let xhttp = new XMLHttpRequest();
         xhttp.open("DELETE", this.APIAddress + resource, true);
         xhttp.send();
-        return await new Promise(function(resolve, reject) {
-          xhttp.onreadystatechange = function() {
+        return await new Promise(function (resolve, reject) {
+          xhttp.onreadystatechange = function () {
             resolve(xhttp.status);
           };
         });
@@ -138,7 +138,7 @@
           },
           method: "DELETE"
         });
-        return await new Promise(function(resolve, reject) {
+        return await new Promise(function (resolve, reject) {
           resolve(respons.status);
         });
       }
@@ -167,8 +167,8 @@
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.setRequestHeader("Authorization", this.APIKey);
         xhttp.send(JSON.stringify(data));
-        return await new Promise(function(resolve, reject) {
-          xhttp.onreadystatechange = function() {
+        return await new Promise(function (resolve, reject) {
+          xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
               resolve(JSON.parse(xhttp.responseText));
             }
@@ -197,7 +197,7 @@
 
   return {
     init,
-    gett,
+    get,
     post,
     del,
     put
